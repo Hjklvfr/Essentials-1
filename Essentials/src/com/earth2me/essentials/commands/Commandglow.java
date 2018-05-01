@@ -3,6 +3,7 @@ package com.earth2me.essentials.commands;
 import com.earth2me.essentials.CommandSource;
 import com.earth2me.essentials.User;
 import net.ess3.api.events.GlowedStatusChangeEvent;
+import org.bukkit.Server;
 
 import static com.earth2me.essentials.I18n.tl;
 
