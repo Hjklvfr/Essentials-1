@@ -204,9 +204,9 @@ public class LocationUtil {
         try {
             block = entity.getTargetBlock(TRANSPARENT_MATERIALS, 300);
         } catch (NoSuchMethodError e) {
-            HashSet<Byte> legacyTransparent = new HashSet<>(); // Bukkit API prevents declaring as Set<Byte>
+            Set<Material> legacyTransparent = new HashSet<>(); // Bukkit API prevents declaring as Set<Byte>
             for (Material m : TRANSPARENT_MATERIALS) {
-                legacyTransparent.add((byte) m.getId());
+                legacyTransparent.add(m);
             }
             block = entity.getTargetBlock(legacyTransparent, 300);
         }

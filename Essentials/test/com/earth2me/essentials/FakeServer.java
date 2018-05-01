@@ -59,6 +59,11 @@ public class FakeServer implements Server {
     }
 
     @Override
+    public Server.Spigot spigot(){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
     public String getName() {
         return "Essentials Fake Server";
     }
@@ -599,6 +604,11 @@ public class FakeServer implements Server {
     @Override
     public ConsoleCommandSender getConsoleSender() {
         return new ConsoleCommandSender() {
+            @Override
+            public CommandSender.Spigot spigot(){
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
             @Override
             public void sendMessage(String message) {
                 System.out.println("Console message: " + message);

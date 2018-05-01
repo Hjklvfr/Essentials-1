@@ -27,6 +27,16 @@ public class FakeWorld implements World {
         this.name = string;
         this.env = environment;
     }
+    
+    @Override
+    public boolean setSpawnLocation(Location lctn){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public World.Spigot spigot(){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     @Override
     public Block getBlockAt(int i, int i1, int i2) {

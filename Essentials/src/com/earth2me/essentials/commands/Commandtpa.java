@@ -6,6 +6,11 @@ import org.bukkit.Server;
 import java.util.Collections;
 import java.util.List;
 
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+
 import static com.earth2me.essentials.I18n.tl;
 
 
@@ -32,21 +37,35 @@ public class Commandtpa extends EssentialsCommand {
         }
         // Don't let sender request teleport twice to the same player.
         if (user.getConfigUUID().equals(player.getTeleportRequest()) && player.hasOutstandingTeleportRequest() // Check timeout
-            && player.isTpRequestHere() == false) { // Make sure the last teleport request was actually tpa and not tpahere
+            && !player.isTpRequestHere()) { // Make sure the last teleport request was actually tpa and not tpahere
             throw new Exception(tl("requestSentAlready", player.getDisplayName()));
         }
 
         if (!player.isIgnoredPlayer(user)) {
             player.requestTeleport(user, false);
             player.sendMessage(tl("teleportRequest", user.getDisplayName()));
-            player.sendMessage(tl("typeTpaccept"));
-            player.sendMessage(tl("typeTpdeny"));
+            player.sendMessage(" ");
+            TextComponent message0 = new TextComponent("    ");
+            TextComponent message1 = new TextComponent(tl("typeTpaccept"));
+            message1.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/tpyes" ) );
+            message1.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(tl("typeTpaccept1")).create() ) );
+            TextComponent message = new TextComponent(tl("typeTpdeny"));
+            message.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/tpno" ) );
+            message.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(tl("typeTpdeny1")).create() ) );
+            message0.addExtra(message1);
+            message0.addExtra("       ");
+            message0.addExtra(message);
+            player.sendMessage(message0);
+            player.sendMessage(" ");
             if (ess.getSettings().getTpaAcceptCancellation() != 0) {
                 player.sendMessage(tl("teleportRequestTimeoutInfo", ess.getSettings().getTpaAcceptCancellation()));
             }
         }
         user.sendMessage(tl("requestSent", player.getDisplayName()));
-        user.sendMessage(tl("typeTpacancel"));
+        TextComponent msg = new TextComponent(tl("typeTpacancel"));
+        msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpacancel"));
+        msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(tl("typeTpacancel1")).create()));
+        user.sendMessage(msg);
     }
 
     @Override

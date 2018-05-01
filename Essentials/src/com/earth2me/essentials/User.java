@@ -16,6 +16,7 @@ import net.ess3.api.events.MuteStatusChangeEvent;
 import net.ess3.api.events.UserBalanceUpdateEvent;
 import net.ess3.nms.refl.ReflUtil;
 
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -774,6 +775,10 @@ public class User extends UserData implements Comparable<User>, IMessageRecipien
         if (!message.isEmpty()) {
             base.sendMessage(message);
         }
+    }
+
+    public void sendMessage(TextComponent message){
+        base.spigot().sendMessage(message);
     }
 
     @Override

@@ -13,4 +13,12 @@ import java.util.Map;
 @Data @EqualsAndHashCode(callSuper = false) public class Jails implements StorageObject {
     @MapValueType(Location.class)
     private Map<String, Location> jails = new HashMap<String, Location>();
+
+    public Map<String, Location> getJails(){
+        return jails;
+    }
+
+    public void setJails(HashMap<String, Location> jails){
+        this.jails = jails;
+    }
 }
