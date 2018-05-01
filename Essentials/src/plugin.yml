@@ -475,6 +475,8 @@ commands:
     usage: /<command> [world]
   worth:
     description: Calculates the worth of items in hand or as specified.
+  glow:
+    usage: /<command> [nick]
 
 permissions:
   essentials.*:

@@ -46,6 +46,7 @@ public class User extends UserData implements Comparable<User>, IMessageRecipien
     private transient boolean teleportRequestHere;
     private transient Location teleportLocation;
     private transient boolean vanished;
+    private transient boolean glowed;
     private transient final Teleport teleport;
     private transient long teleportRequestTime;
     private transient long lastOnlineActivity;
@@ -704,6 +705,23 @@ public class User extends UserData implements Comparable<User>, IMessageRecipien
     @Override
     public boolean isVanished() {
         return vanished;
+    }
+
+    public boolean isGlowed() {
+        return glowed;
+    }
+
+    public void setGlowed(final boolean set) {
+        glowed = set;
+        if (set) {
+            if (isAuthorized("essentials.glowed.effect")) {
+                this.getBase().addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, Integer.MAX_VALUE, 1, false));
+            }
+        } else {
+            if (isAuthorized("essentials.glowed.effect")) {
+                this.getBase().removePotionEffect(PotionEffectType.GLOWING);
+            }
+        }
     }
 
     @Override
