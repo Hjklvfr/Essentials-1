@@ -715,7 +715,7 @@ public class User extends UserData implements Comparable<User>, IMessageRecipien
         glowed = set;
         if (set) {
             if (isAuthorized("essentials.glowed.effect")) {
-                this.getBase().addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, Integer.MAX_VALUE, 1, false));
+                this.getBase().addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, Integer.MAX_VALUE, 100, true, false));
             }
         } else {
             if (isAuthorized("essentials.glowed.effect")) {
@@ -736,7 +736,7 @@ public class User extends UserData implements Comparable<User>, IMessageRecipien
             setHidden(true);
             ess.getVanishedPlayers().add(getName());
             if (isAuthorized("essentials.vanish.effect")) {
-                this.getBase().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1, false));
+                this.getBase().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 100, true, false));
             }
         } else {
             for (Player p : ess.getOnlinePlayers()) {

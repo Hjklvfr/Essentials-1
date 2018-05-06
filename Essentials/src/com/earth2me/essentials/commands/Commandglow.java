@@ -12,7 +12,7 @@ import net.ess3.api.events.VanishStatusChangeEvent;
 
 public class Commandglow extends EssentialsToggleCommand {
     public Commandglow() {
-        super("glow", "essentials.glow.others");
+        super("glow", "essentials.glowed.others");
     }
 
     @Override
